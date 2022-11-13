@@ -9,9 +9,9 @@ using atividadeAvaliativaModulo6.Database;
 
 namespace atividadeAvaliativaModulo6.Migrations
 {
-    [DbContext(typeof(ClienteDbContext))]
-    [Migration("20221113200646_UpdateDb")]
-    partial class UpdateDb
+    [DbContext(typeof(TripDbContext))]
+    [Migration("20221113221019_NewDbUpdate")]
+    partial class NewDbUpdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,10 +22,10 @@ namespace atividadeAvaliativaModulo6.Migrations
 
             modelBuilder.Entity("atividadeAvaliativaModulo6.Model.Cliente", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("Id_cliente")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("id");
+                        .HasColumnName("id_cliente");
 
                     b.Property<string>("Cpf")
                         .IsRequired()
@@ -52,9 +52,35 @@ namespace atividadeAvaliativaModulo6.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("telefone");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id_cliente");
 
                     b.ToTable("Cliente");
+                });
+
+            modelBuilder.Entity("atividadeAvaliativaModulo6.Model.Pacote", b =>
+                {
+                    b.Property<int>("Id_pacote")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id_pacote");
+
+                    b.Property<string>("Data_viagem")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("data_viagem");
+
+                    b.Property<string>("Destino")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("destino");
+
+                    b.Property<double>("Valor")
+                        .HasColumnType("double")
+                        .HasColumnName("valor");
+
+                    b.HasKey("Id_pacote");
+
+                    b.ToTable("Pacote");
                 });
 #pragma warning restore 612, 618
         }

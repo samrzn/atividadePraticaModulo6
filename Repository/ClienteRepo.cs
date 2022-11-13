@@ -6,8 +6,8 @@ namespace atividadeAvaliativaModulo6.Repository
 {
     public class ClienteRepo : IClienteRepository
     {
-        private readonly ClienteDbContext _context;
-        public ClienteRepo(ClienteDbContext context)
+        private readonly TripDbContext _context;
+        public ClienteRepo(TripDbContext context)
         {
             _context = context;
         }
@@ -18,12 +18,12 @@ namespace atividadeAvaliativaModulo6.Repository
 
         public void DeleteCliente(Cliente cliente)
         {
-            throw new NotImplementedException();
+            _context.Remove(cliente);
         }
 
-        public async Task<Cliente> GetClienteById(int id)
+        public async Task<Cliente> GetClienteById(int id_cliente)
         {
-            return await _context.Cliente.Where(x => x.Id == id).FirstOrDefaultAsync();
+            return await _context.Cliente.Where(x => x.Id_cliente == id_cliente).FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<Cliente>> GetClientes()
@@ -38,7 +38,7 @@ namespace atividadeAvaliativaModulo6.Repository
 
         public void UpdateCliente(Cliente cliente)
         {
-            throw new NotImplementedException();
+            _context.Update(cliente);
         }
     }
 }
