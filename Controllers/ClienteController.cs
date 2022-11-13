@@ -15,9 +15,17 @@ namespace atividadeAvaliativaModulo6.Controllers
         }
 
         [HttpGet]
-        public string Hello()
+        public async Task<IActionResult> GetAll()
         {
-            return "Olé";
+            var clientes = await _repository.GetClientes();
+            return clientes.Any() ? Ok(clientes) : NoContent();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var cliente = await _repository.GetClienteById(id);
+            return cliente != null ? Ok(cliente) : NotFound("Cliente não encontrado.");
         }
 
         [HttpPost]

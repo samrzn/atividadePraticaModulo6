@@ -1,5 +1,6 @@
 using atividadeAvaliativaModulo6.Database;
 using atividadeAvaliativaModulo6.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace atividadeAvaliativaModulo6.Repository
 {
@@ -20,14 +21,14 @@ namespace atividadeAvaliativaModulo6.Repository
             throw new NotImplementedException();
         }
 
-        public Task<Cliente> GetClienteById(int id)
+        public async Task<Cliente> GetClienteById(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Cliente.Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        public Task<IEnumerable<Cliente>> GetClientes()
+        public async Task<IEnumerable<Cliente>> GetClientes()
         {
-            throw new NotImplementedException();
+            return await _context.Cliente.ToListAsync();
         }
 
         public async Task<bool> SaveChangesAsync()
